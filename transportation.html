@@ -19,8 +19,91 @@
 </div>
 <div style="padding-left:20px">
     <h1>Transportation</h1>
-    <p>this is how you get to pratt</p>
-    <p>we love pratt</p>
+    <p>Transportation between the two campuses, like almost anywhere within the city, is best accomplished by public transit. There are a number of modes available to you, with the ride regardless of mode lasting about 35-45 minutes. Unfortunately, there is no one-seat ride on the subway from one campus to the other. If travelling from Brooklyn to Manhattan, we suggest taking the (G) train from Classon Avenue station to Metropolitan Avenue, transferring to the (L) train, riding that under the East River until 6th Avenue, a short walk from the Manhattan campus. In the other direction, we suggest the same route backwards, taking the L to the G. The next departures are shown in the tool below!</p> 
+    <h2 id="timeb"></h2>
+    <h2 id="timem"></h2>
+
+    <script>
+	    //Fetch Classon Ave Departures
+	    const myHeaders = new Headers();
+	    myHeaders.append("apiKey", "{{apiKey}}");
+
+	    const requestOptions = {
+		      method: "GET",
+		      headers: myHeaders,
+		      redirect: "follow"
+	    };
+
+	    try {
+		      const response = await fetch("https://external.transitapp.com/v3/public/stop_departures?global_stop_id=MTAS:19158", requestOptions);
+		      const result = await response.text();
+		      console.log(result)
+	    } catch (error) {
+		      console.error(error);
+	    };
+	    //Fetch 6th Ave Departures
+	    
+    </script>
+    <br />
+    <p>Weather-permitting (and if you’re a brave soul) you may prefer to save a couple of minutes and use the Citibike bikeshare ubiquitous in the city. Simply find a bike at a dock and follow the instructions on site to unlock it. The most expensive option, and either fastest or slowest dependent on traffic, is to take a cab/rideshare. For ease of comparison, we have included a fare calculator tool below:</p>
+    <br />  
+    <h3>Calculate</h3>  
+    	<div><input type="radio" name="mode" value="subway" id="t"><label for="t">Transit/Subway</label>		    </div>
+	<div> <input type="radio" name="mode" value="bike" id="b"><label for="b">CitiBike (Approximate)</label>  </div>
+	<div><input type="radio" name="mode" value="car" id="c"><label for="c">Taxi/Carshare (Approximate)</label></div><br />
+	<input type="radio" name="trip" value="oneway" id="ow"><label for="ow">One Way</label>
+	<input type="radio" name="trip" value="round" id="rt"><label for="rt">Round Trip</label><br />
+														        
+	<button id="btn">Calculate Trip</button>
+
+	<p id="output1"></p>
+	<p id="output2"></p>
+	<h3 id="calcout"></h3>
+
+	<script>
+		const btn = document.querySelector('#btn');        
+		const transitModes = document.querySelectorAll('input[name="mode"]');
+		const tripTypes = document.querySelectorAll('input[name="trip"]');
+		btn.addEventListener("click", () => {
+			let selectedMode;
+			for (const mode of transitModes) {
+				if (mode.checked) {
+					selectedMode = mode.value;
+					break;
+				}
+			}
+			let selectedTripType;
+			for (const tripType of tripTypes) {
+				if (tripType.checked) {
+					selectedTripType = tripType.value;
+					break;
+				}
+			} 
+		/*//Show Selections for Debugging:
+		document.getElementById("output1").innerHTML = selectedMode ? `You selected ${selectedMode}` : `Please select a mode of Transportation`; 
+		document.getElementById("output2").innerHTML = selectedTripType ? `You selected ${selectedTripType}` : `Please select a trip type`; */
+			// Defining Costs
+				let cost;
+				if (selectedMode == "subway") {
+					cost = 2.90;
+				} else if (selectedMode == "bike") {
+					cost = 8.35;
+				} else if (selectedMode == "car") {
+					cost = 36.25;
+				} else {
+					cost = 0;
+				}
+			if (selectedTripType == "oneway") {
+				document.getElementById("calcout").innerHTML = `This Trip would cost you \$${cost.toFixed(2)}.`
+			} else if (selectedTripType == "round") {
+				document.getElementById("calcout").innerHTML = `This Trip would cost you \$${(cost*2).toFixed(2)}.`
+			}
+		});
+																			         
+	</script>
+<h3> How We Calculate/Estimate Fares: </h3>
+    <p>On the subway, you pay the standard MTA fare, currently $2.90 as of December 2024. You can still pay with an MTA metrocard, although these are currently being phased out in favor of the tap-to-pay OMNY system, for which you can buy a dedicated card, or simply use an existing debit/credit card or even mobile device equipped with a tap-to-pay NFC chip. Citibike fares are more complicated. We are assuming for the sake of this calculator that the rider is not taking an ebike. This would add an extra rate-per-minute onto the cost of the ride. Furthermore, Citibike offers memberships that add up to various discounts. Since this guide is aimed at newcomers, we are assuming a normal, single-ride fare, which has a flat fare of $4.75 for the first 30 min, after which the rider is charged $0.36/min. Obviously, how fast you reach a dock near Pratt is dependent on the rider. The ride should take an average of about 36 minutes, but we assumed a more conservative 40 minutes, so as not to disappoint users of this manual. The cab fare is probably the least precise, as it is dependent on far too many factors, including time of day, traffic conditions, if one takes a yellow cab (from manhattan), green cab (from brooklyn) or rideshare (from either), among other factors. We assumed yellow cab standard metered fares as a sort of average that the other companies tend towards (plus or minus a lot). Even this is not straightforward, as it depends on how fast the cab is moving at a given time and how long the ride ends up being, as well as how much the rider is inclined to tip (15-20% is typical). Within these constraints, we made an educated guess based on the published fares and fees: <a href=”https://www.nyc.gov/site/tlc/passengers/taxi-fare.page”>see here</a>
+    </p>
   </div>
 </body>
 </html> 
