@@ -32,7 +32,8 @@
 		    return time;
 	    }
  //Fetch and Display Classon Ave Departures
-	    const myHeaders = new Headers();
+	async function brooklynDeparts() {
+		const myHeaders = new Headers();
 	    	myHeaders.append("apiKey", "bdd2a02a9c0529641be54323c6a8a98fc465be969603e214811b75ddbb39a315");
 	    const requestOptions = {
 		    method: "GET",
@@ -48,8 +49,10 @@
 	    } catch (error) {
 		    console.error(error);
 	    };
-	    
+	};
+	brooklynDeparts();
 //Fetch and Display 6th Ave Departures
+async function manDeparts {
 	    const myHeaders2 = new Headers();
 	    myHeaders.append("apiKey", "bdd2a02a9c0529641be54323c6a8a98fc465be969603e214811b75ddbb39a315");
 	    
@@ -68,6 +71,8 @@
 	    } catch (error) {
 		    console.error(error);
 	    };
+	};
+	manDeparts();
     </script>
     <br />
     <p>Weather-permitting (and if you’re a brave soul) you may prefer to save a couple of minutes and use the Citibike bikeshare ubiquitous in the city. Simply find a bike at a dock and follow the instructions on site to unlock it. The most expensive option, and either fastest or slowest dependent on traffic, is to take a cab/rideshare. For ease of comparison, we have included a fare calculator tool below:</p>
