@@ -45,11 +45,11 @@
 		    var result = await response.json();
 		    let unixTime = result.route_departures[0].itineraries[0].schedule_items[0].departure_time;
 		    let departureTime = convertTime(unixTime);
-		    document.getElementById("timeb").innerHTML = `Next Queensbound <span color="#6CBE45">G Train</span> Departing Classon Ave at ${departureTime}`;
+		    document.getElementById("timeb").innerHTML = `Next Queensbound <span class="#gtrain">G Train</span> Departing Classon Ave at ${departureTime}`;
 	    } catch (error) {
 		    console.error(error);
 	    } finally {
-		    document.getElementById("timeb").innerHTML = `No Response from Transit API for next departing G Train`;
+		    document.getElementById("timeb").innerHTML = `No Response from Transit API for next departing <span class="gtrain">G Train</span>`;
 	    };
 	};
 	brooklynDeparts();
@@ -68,12 +68,12 @@ async function manDeparts() {
 		    var result = await response.json();
 		    let unixTime = result.route_departures[0].itineraries[1].schedule_items[0].departure_time;
 		    let departureTime = convertTime(unixTime);
-		    document.getElementById("timem").innerHTML = `Next Manhattan Bound <span color="#A7A9AC"> L Train</span> Departing 6th Ave at ${departureTime}`;
+		    document.getElementById("timem").innerHTML = `Next Manhattan Bound <span class="ltrain"> L Train</span> Departing 6th Ave at ${departureTime}`;
 		    console.log(result);
 	    } catch (error) {
 		    console.error(error);
 	    } finally {
-		    document.getElementById("timem").innerHTML = `No Response From Transit API for next departing L Train`;
+		    document.getElementById("timem").innerHTML = `No Response From Transit API for next departing <span class="ltrain">L Train</span>`;
 	    };
 	};
 	manDeparts();
