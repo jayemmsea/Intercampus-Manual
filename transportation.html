@@ -24,25 +24,47 @@
     <h2 id="timem"></h2>
 
     <script>
-	    //Fetch Classon Ave Departures
+//Time Convert Function for Later
+	    function convertTime(x) {
+		    let dateObj = new Date(x * 1000);
+		    let utcString = dateObj.toUTCString();
+		    let time = utcString.slice(-11, -4);
+		    return time;
+	    }
+ //Fetch and Display Classon Ave Departures
 	    const myHeaders = new Headers();
-	    myHeaders.append("apiKey", "{{apiKey}}");
-
+	    	myHeaders.append("apiKey", "bdd2a02a9c0529641be54323c6a8a98fc465be969603e214811b75ddbb39a315");
 	    const requestOptions = {
-		      method: "GET",
-		      headers: myHeaders,
-		      redirect: "follow"
+		    method: "GET",
+		    headers: myHeaders,
+		    redirect: "follow"
 	    };
-
 	    try {
-		      const response = await fetch("https://external.transitapp.com/v3/public/stop_departures?global_stop_id=MTAS:19158", requestOptions);
-		      const result = await response.text();
-		      console.log(result)
+		    var response = await fetch("https://external.transitapp.com/v3/public/stop_departures?global_stop_id=MTAS:19158", requestOptions);
+		    var result = await response.json();
+		    let unixTime = result.route_departures[0].itineraries[0].schedule_items[0].departure_time;
+		    let departureTime = convertTime(unixTime);
+		    document.getElementById("timeb").innerHTML = `Next Queensbound G Train Departing Classon Ave at ${departureTime}`
 	    } catch (error) {
-		      console.error(error);
+		    console.error(error);
 	    };
-	    //Fetch 6th Ave Departures
 	    
+/*//Fetch and Display 6th Ave Departures
+	    const myHeaders = new Headers();
+	    myHeaders.append("apiKey", "bdd2a02a9c0529641be54323c6a8a98fc465be969603e214811b75ddbb39a315");
+	    
+	    const requestOptions = {
+		    method: "GET",
+		    headers: myHeaders,
+		    redirect: "follow"
+	    };
+	    try {
+		    const response = await fetch("https://external.transitapp.com/v3/public/stop_departures?global_stop_id=MTAS:19325", requestOptions);
+		    var result = await response.json();
+		    console.log(result);
+	    } catch (error) {
+		    console.error(error);
+	    };*/
     </script>
     <br />
     <p>Weather-permitting (and if you’re a brave soul) you may prefer to save a couple of minutes and use the Citibike bikeshare ubiquitous in the city. Simply find a bike at a dock and follow the instructions on site to unlock it. The most expensive option, and either fastest or slowest dependent on traffic, is to take a cab/rideshare. For ease of comparison, we have included a fare calculator tool below:</p>
