@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+</head>
+<body>
+    <h2>Calculate</h2>
+    <div>
+        <input type="radio" name="mode" value="subway" id="t">
+        <label for="t">Transit/Subway</label>
+    </div>
+    <div>
+        <input type="radio" name="mode" value="bike" id="b">
+        <label for="b">CitiBike (Approximate)</label>
+    </div>
+    <div>
+        <input type="radio" name="mode" value="car" id="c">
+        <label for="c">Taxi/Carshare (Approximate)</label>
+    </div><br />
+    <input type="radio" name="trip" value="oneway" id="ow">
+    <label for="ow">One Way</label>
+    <input type="radio" name="trip" value="round" id="rt">
+    <label for="rt">Round Trip</label><br />
+    
+    <button id="btn">Calculate Trip</button>
+
+    <p id="output1"></p>
+    <p id="output2"></p>
+    <h3 id="calcout"></h3>
+
+    <script>
+        const btn = document.querySelector('#btn');        
+        const transitModes = document.querySelectorAll('input[name="mode"]');
+        const tripTypes = document.querySelectorAll('input[name="trip"]');
+        btn.addEventListener("click", () => {
+            let selectedMode;
+            for (const mode of transitModes) {
+                if (mode.checked) {
+                    selectedMode = mode.value;
+                    break;
+                  }
+                }
+           let selectedTripType;
+           for (const tripType of tripTypes) {
+            	if (tripType.checked) {
+                	selectedTripType = tripType.value;
+                    break;
+                }
+            } 
+            /*//Show Selections for Debugging:
+            document.getElementById("output1").innerHTML = selectedMode ? `You selected ${selectedMode}` : `Please select a mode of Transportation`; 
+            document.getElementById("output2").innerHTML = selectedTripType ? `You selected ${selectedTripType}` : `Please select a trip type`; */
+            let cost;
+            if (selectedMode == "subway") {
+            	cost = 2.90;
+            } else if (selectedMode == "bike") {
+            	cost = 8.35;
+            } else if (selectedMode == "car") {
+            	cost = 36.25;
+            } else {
+            	cost = 0;
+            }
+            
+            if (selectedTripType == "oneway") {
+            	document.getElementById("calcout").innerHTML = `This Trip would cost you \$${cost.toFixed(2)}.`
+            } else if (selectedTripType == "round") {
+            	document.getElementById("calcout").innerHTML = `This Trip would cost you \$${(cost*2).toFixed(2)}.`
+            }
+            });
+         
+    </script>
+</body>
+</html>
