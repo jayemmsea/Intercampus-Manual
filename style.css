@@ -65,4 +65,9 @@ figcaption {
 	 color:#6CBE45;
 	 -webkit-text-stroke: 1px black;
  }
- 
+#mbikes {
+       font-weight: bold;
+}
+#bbikes {
+	font-weight:bold;
+}

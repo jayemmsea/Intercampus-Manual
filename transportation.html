@@ -48,7 +48,6 @@
 		    document.getElementById("timeb").innerHTML = `Next Queensbound <span class="#gtrain">G Train</span> Departing Classon Ave at ${departureTime}`;
 	    } catch (error) {
 		    console.error(error);
-	    } finally {
 		    document.getElementById("timeb").innerHTML = `No Response from Transit API for next departing <span class="gtrain">G Train</span>`;
 	    };
 	};
@@ -72,14 +71,53 @@ async function manDeparts() {
 		    console.log(result);
 	    } catch (error) {
 		    console.error(error);
-	    } finally {
 		    document.getElementById("timem").innerHTML = `No Response From Transit API for next departing <span class="ltrain">L Train</span>`;
 	    };
 	};
 	manDeparts();
     </script>
     <br />
-    <p>Weather-permitting (and if you’re a brave soul) you may prefer to save a couple of minutes and use the Citibike bikeshare ubiquitous in the city. Simply find a bike at a dock and follow the instructions on site to unlock it. The most expensive option, and either fastest or slowest dependent on traffic, is to take a cab/rideshare. For ease of comparison, we have included a fare calculator tool below:</p>
+    <p>Weather-permitting (and if you’re a brave soul) you may prefer to save a couple of minutes and use the Citibike bikeshare ubiquitous in the city. Simply find a bike at a dock and follow the instructions on site to unlock it. The most convenient bike docks to the Brooklyn Campus are at Willoughby Ave and Hall St, which currently have <span id="bbikes"></span> bikes available. Equally near the Manhattan Campus are the docks at 13th Street and 7th Ave, which have <span id="mbikes"></span> bikes available. </p><br />
+
+    <script>
+	    async function brooklynBikes() {
+		    const requestOptions = {
+			      method: "GET",
+			      redirect: "follow"
+		    };
+
+		    try {
+			    var response = await fetch("https://api.citybik.es/v2/networks/citi-bike-nyc", requestOptions);
+			    var result = await response.json();
+			    let availableBikes = result.network.stations[286].free_bikes;
+			    document.getElementById("bbikes").innerHTML = availableBikes.toString();
+		    } catch (error) {
+			    console.error(error);
+			    document.getElementById("bbikes").innerHTML = "ERROR";
+		    }
+	    }
+	    brooklynBikes();
+
+	    async function manhattanBikes() {
+		    const requestOptions = {
+			      method: "GET",
+			      redirect: "follow"
+		    };
+
+		    try {
+			    var response = await fetch("https://api.citybik.es/v2/networks/citi-bike-nyc", requestOptions);
+			    var result = await response.json();
+			    let availableBikes = result.network.stations[405].free_bikes;
+			    document.getElementById("mbikes").innerHTML = availableBikes.toString();
+		    } catch (error) {
+			    console.error(error);
+			    document.getElementById("mbikes").innerHTML = "ERROR";
+		    }
+	    }
+	    manhattanBikes();
+    </script>
+
+    </p>The most expensive option, and either fastest or slowest dependent on traffic, is to take a cab/rideshare. For ease of comparison, we have included a fare calculator tool below:</p>
     <br />  
     <h3>Calculate</h3>  
     	<div><input type="radio" name="mode" value="subway" id="t"><label for="t">Transit/Subway</label>		    </div>
