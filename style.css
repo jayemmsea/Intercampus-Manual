@@ -71,3 +71,7 @@ figcaption {
 #bbikes {
 	font-weight:bold;
 }
+#transitlogo {
+	display: inline;
+	height: 1em;
+}
