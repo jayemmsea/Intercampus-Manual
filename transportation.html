@@ -41,7 +41,7 @@
 		    redirect: "follow"
 	    };
 	    try {
-		    var response = await fetch("https://external.transitapp.com/v3/public/stop_departures?global_stop_id=MTAS:19158", requestOptions);
+		    var response = await fetch("https://external.transitapp.com/v3/public/stop_departures?global_stop_id=MTAS:19158&remove_cancelled=true", requestOptions);
 		    var result = await response.json();
 		    let unixTime = result.route_departures[0].itineraries[0].schedule_items[0].departure_time;
 		    let departureTime = convertTime(unixTime);
@@ -64,7 +64,7 @@ async function manDeparts() {
 		    redirect: "follow"
 	    };
 	    try {
-		    var response = await fetch("https://external.transitapp.com/v3/public/stop_departures?global_stop_id=MTAS:19325", requestOptions);
+		    var response = await fetch("https://external.transitapp.com/v3/public/stop_departures?global_stop_id=MTAS:19325&remove_cancelled=true", requestOptions);
 		    var result = await response.json();
 		    let unixTime = result.route_departures[0].itineraries[1].schedule_items[0].departure_time;
 		    let departureTime = convertTime(unixTime);
