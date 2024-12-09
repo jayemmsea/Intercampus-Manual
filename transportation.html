@@ -27,8 +27,8 @@
 //Time Convert Function for Later
 	    function convertTime(x) {
 		    let dateObj = new Date(x * 1000);
-		    let utcString = dateObj.toUTCString();
-		    let time = utcString.slice(-11, -4);
+		    let dateString = dateObj.toLocaleString("en-US", {timeZone: "America/New_York"});
+		    let time = dateString.slice(-11, -3);
 		    return time;
 	    }
  //Fetch and Display Classon Ave Departures
@@ -67,7 +67,7 @@ async function manDeparts() {
 		    var result = await response.json();
 		    let unixTime = result.route_departures[0].itineraries[1].schedule_items[0].departure_time;
 		    let departureTime = convertTime(unixTime);
-		    document.getElementById("timem").innerHTML = `Next Manhattan Bound <span class="ltrain"> L Train</span> Departing 6th Ave at ${departureTime}`;
+		    document.getElementById("timem").innerHTML = `Next Brooklyn-Bound <span class="ltrain"> L Train</span> Departing 6th Ave at ${departureTime}`;
 		    console.log(result);
 	    } catch (error) {
 		    console.error(error);
