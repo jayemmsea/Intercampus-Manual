@@ -12,6 +12,18 @@ img {
 figcaption {
 	text-align:center;
 }
+a:link {
+	color:black
+}
+a:hover {
+	color:darkorange;
+}
+a:active {
+	color:#FFCE2E;
+}
+a:visited {
+	color:black;
+}
 @font-face {
     font-family: OpenSans;
     src: url(OpenSans-VariableFont_wdth,wght.ttf);
@@ -67,12 +79,14 @@ figcaption {
  }
 .button {
 	color:black;
-	font-size:16px;
+	font-size:18px;
 	background-color: #FFCE2E;
-	display:inline;
+	display:block;
 	border:2px solid black;
 	height:2rem;
-	width:10%;
+	width:12%;
+	text-align:center;
+	padding-top:2px;
 }
 #mbikes {
        font-weight: bold;
