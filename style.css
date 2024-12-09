@@ -83,10 +83,8 @@ a:visited {
 	background-color: #FFCE2E;
 	display:block;
 	border:2px solid black;
-	height:2rem;
-	width:12%;
 	text-align:center;
-	padding-top:2px;
+	padding:4px 1px 4px 1px;
 }
 #mbikes {
        font-weight: bold;
