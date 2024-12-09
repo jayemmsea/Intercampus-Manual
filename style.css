@@ -65,6 +65,13 @@ figcaption {
 	 color:#6CBE45;
 	 -webkit-text-stroke: 1px black;
  }
+.button {
+	color:black;
+	background-color: #FFCE2E;
+	display:inline;
+	height:2em;
+	width:10%;
+}
 #mbikes {
        font-weight: bold;
 }
