@@ -1,32 +1,24 @@
-/* Body */
 body {
-    font-family: OpenSans;
+    font-family: OpenSans, sans-serif;
     background-color: whitesmoke;
-    color:black
+    color: black;
+    padding: 15px;
 }
 img {
-	display: block;
-	margin-left:auto;
-	margin-right:auto;
+    display: block;
+    margin: 0 auto;
 }
 figcaption {
-	text-align:center;
+    text-align: center;
+    padding-bottom: 20px;
 }
-a:link {
-	color:black
+a {
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
 }
 a:hover {
-	color:darkorange;
-}
-a:active {
-	color:#FFCE2E;
-}
-a:visited {
-	color:black;
-}
-@font-face {
-    font-family: OpenSans;
-    src: url(OpenSans-VariableFont_wdth,wght.ttf);
+    color: orangered;
 }
 .header {
     overflow: hidden;
@@ -38,65 +30,80 @@ a:visited {
     color: black;
     text-align: center;
     padding: 12px;
-    text-decoration: none;
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
+}
+.header a:hover {
+    color: orangered;
 }
 .header a.logo {
     font-size: 25px;
     font-weight: bold;
 }
-.header a.active {
-    color: orangered;
-}
 .header-right {
     float: right;
 }
-/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 @media screen and (max-width: 500px) {
-.header a {
-    float: none;
-    display: block;
-    text-align: left;
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+    .header-right {
+        float: none;
+    }
 }
-.header-right {
-    float: none;
-}}
-.image {
-	 display: block;
-	 margin-left: auto;
-	 margin-right: auto;
- }
- .ltrain {
-	 color:#A7A9AC;
-	 -webkit-text-stroke: 1px black;
- }
- .gtrain {
-	 color:#6CBE45;
-	 -webkit-text-stroke: 1px black;
- }
 .button {
-	color:black;
-	font-size:18px;
-	background-color: #FFCE2E;
-	display:block;
-	border:2px solid black;
-	text-align:center;
-	padding:4px 1px 4px 1px;
+    color: black;
+    font-size: 18px;
+    background-color: #FFCE2E;
+    display: inline-block;
+    border: 2px solid black;
+    text-align: center;
+    padding: 12px 20px;
+    cursor: pointer;
+    text-decoration: none;
 }
-#mbikes {
-       font-weight: bold;
+.button:hover {
+    background-color: orangered;
+    color: white;
 }
-#bbikes {
-	font-weight:bold;
+.container-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
 }
-#transitlogo {
-	display: inline;
-	height: 1em;
+.ltrain, .gtrain {
+    -webkit-text-stroke: 1px black;
+}
+.ltrain {
+    color: #A7A9AC;
+}
+.gtrain {
+    color: #6CBE45;
+}
+.image {
+    display: block;
+    margin: 0 auto;
 }
 #illus {
-	max-width:300px;
-	height:auto;
+    max-width: 300px;
+    height: auto;
 }
-
+#transitlogo {
+    display: inline;
+    height: 1em;
+}
+@font-face {
+    font-family: OpenSans;
+    src: url(OpenSans-VariableFont_wdth,wght.ttf);
+}
+th {
+    font-size: 20px;
+}
+#mbikes, #bbikes {
+    font-weight: bold;
+}
