@@ -59,6 +59,9 @@ a:hover {
     font-size: 18px;
     background-color: #FFCE2E;
     display: inline-block;
+    width:-webkit-fill-available;
+    width:-moz-available;
+    width:fill-available;
     border: 2px solid black;
     text-align: center;
     padding: 12px 20px;
